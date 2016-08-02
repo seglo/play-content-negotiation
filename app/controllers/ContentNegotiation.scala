@@ -44,7 +44,7 @@ trait ContentNegotiation extends AcceptExtractors with Rendering with Results {
     Ok(toXml(repr).toString).as(ContentTypes.XML)
 
   private def jsonResult(repr: JValue)
-               (implicit request: RequestHeader, formats: Formats) =
+               (implicit request: RequestHeader, formats: Formats, codec: Codec) =
     Ok(compact(jsonRender(repr))).as(ContentTypes.JSON)
 
   private def serialize[M](model: M)(implicit formats: Formats): JValue =
