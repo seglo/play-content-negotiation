@@ -19,7 +19,7 @@ trait ContentNegotiation extends AcceptExtractors with Rendering with Results {
     * The json4s default serialization formats, implicitly required for `negotiate` methods
     * You may choose to use one or more different libraries here, depending on your requirements.  If your library
     * doesn't have a Scala DSL or implicit marshaling helpers, then write your own (i.e. like json4s `Formats` or
-    * play-json `Writes[T]` types.
+    * play-json `Writes[T]` types).
     */
   implicit val formats = Serialization.formats(NoTypeHints)
 

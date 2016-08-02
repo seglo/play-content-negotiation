@@ -1,5 +1,5 @@
-A generalized Content Negotiation example using json4s
-======================================================
+A Play! Content Negotiation example using json4s
+================================================
 
 This project demonstrates simple JSON and XML content negotiation given the appropriate `Accept` header.
 
