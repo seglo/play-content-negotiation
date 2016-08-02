@@ -7,7 +7,7 @@ This project demonstrates simple JSON and XML content negotiation given the appr
 XML out of the box.  This is not necessarily a good reason to use json4s.  You may want to choose a different library
 (or two, or three) depending on your own your marshalling requirements.
 
-To use, mix-in the [`ContentNegotiation`](blob/master/app/controllers/ContentNegotiation.scala) trait to access the
+To use, mix-in the [`ContentNegotiation`](app/controllers/ContentNegotiation.scala) trait to access the
 `negotiate` and `negotiateAsync` methods to return a Play! `Result`.  These methods will use the standard
 [Play! Content Negotiation](https://www.playframework.com/documentation/2.5.x/ScalaContentNegotiation#Content) features
 to determine the appropriate result.
