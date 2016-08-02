@@ -17,21 +17,30 @@ The `negotiate` methods take in the model to marshal, and *3 implicits*:
 * The json4s formatter (this can be replaced with one or more different marshaling libraries, depending on your
   requirements)
 
-## XML Result
+# XML Result
 
 ```shell
 $ curl -H "Accept: application/xml" http://localhost:9000/project
 <name>test</name><startDate>2016-08-02T19:01:37.818Z</startDate><lang><name>Scala</name><version>2.75</version></lang><teams><role>QA</role><members><name>John Doe</name><experience>5</experience></members><members><name>Mike</name><experience>3</experience></members></teams><teams><role>Impl</role><members><name>Mark</name><experience>4</experience></members><members><name>Mary</name><experience>5</experience></members><members><name>Nick Noob</name><experience>1</experience></members></teams>
 ```
 
-## JSON Result
+# JSON Result
 
 ```shell
 $ curl -H "Accept: application/json" http://localhost:9000/project
 {"name":"test","startDate":"2016-08-02T19:02:31.562Z","lang":{"name":"Scala","version":2.75},"teams":[{"role":"QA","members":[{"name":"John Doe","experience":5},{"name":"Mike","experience":3}]},{"role":"Impl","members":[{"name":"Mark","experience":4},{"name":"Mary","experience":5},{"name":"Nick Noob","experience":1}]}]}
 ```
 
-## Resources
+# Content Negotiation & Media Type discovery
+
+Also related to Content Negotiation is to provide a way to inform the user of supported media types in a response when
+their provided representation is not available.  [Daniel Westheide](http://danielwestheide.com) has a presentation and
+library to extend Play! to support this:
+
+* Relevant [Presentation](http://danielwestheide.com/talks/playbb2015/slides/index.html#/17)
+* [`play-content-negotiation`](https://github.com/restfulscala/play-content-negotiation/) GitHub project
+
+# Resources
 
 * json4s
   * http://json4s.org/
@@ -40,3 +49,4 @@ $ curl -H "Accept: application/json" http://localhost:9000/project
 * HTTP RFC
   * Content Negotiation: https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html
   * Header Definitions: https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html
+
