@@ -27,6 +27,7 @@ class AsyncController @Inject() (actorSystem: ActorSystem)(implicit exec: Execut
     val project = Project("test", new Date, Some(Language("Scala", 2.75)), List(
       Team("QA", List(Employee("John Doe", 5), Employee("Mike", 3))),
       Team("Impl", List(Employee("Mark", 4), Employee("Mary", 5), Employee("Nick Noob", 1)))))
-    project
+
+    Content(project)
   }}
 }
