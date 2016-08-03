@@ -8,15 +8,15 @@ XML out of the box.  This is not necessarily a good reason to use json4s.  You m
 (or two, or three) depending on your own your marshalling requirements.
 
 To use, mix-in the [`ContentNegotiation`](app/controllers/ContentNegotiation.scala) trait to access the
-`negotiate` and `negotiateAsync` methods to return a Play! `Result`.  These methods will use the standard
+`negotiateAction` method to return a Play! `Action`.  This Action will use the standard
 [Play! Content Negotiation](https://www.playframework.com/documentation/2.5.x/ScalaContentNegotiation#Content) features
-to determine the appropriate result.
+to determine the appropriate marshalling and Content Type of the `Result`.
 
-The `negotiate` methods take in the model to marshal, and *3 implicits*:
-* The request headers, required by Play!'s content negotiation feature
-* The `Codec`, required for the XML result type
+The `negotiateAction` Action takes in a `Function[Request[AnyContent], Future[M]]` that returns the model to marshal, and *3 implicits*:
 * The json4s formatter (this can be replaced with one or more different marshaling libraries, depending on your
   requirements)
+* The `Codec`, required for the XML result type
+* An execution context for the internal `Action.async`
 
 # XML Result
 
