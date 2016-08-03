@@ -13,9 +13,6 @@ import play.api.http.ContentTypes
   * A generalized Content Negotiation example using json4s
   */
 trait ContentNegotiation extends AcceptExtractors with Rendering with Results {
-
-  sealed case class Content[M](model: M, status: Int = 200)
-
   import ExecutionContext.Implicits.global
 
   def negotiateAction[M](block: Request[AnyContent] => Future[Content[M]])
@@ -29,7 +26,6 @@ trait ContentNegotiation extends AcceptExtractors with Rendering with Results {
     }
   }
 
-
   private def xmlResult(repr: JValue, status: Int)
                (implicit request: Request[AnyContent]) =
     Results.Status(status)(toXml(repr).toString).as(ContentTypes.XML)
@@ -41,3 +37,5 @@ trait ContentNegotiation extends AcceptExtractors with Rendering with Results {
   private def serialize[M](model: M)(implicit formats: Formats): JValue =
     Extraction.decompose(model)
 }
+
+final case class Content[M](model: M, status: Int = 200)
