@@ -12,11 +12,10 @@ To use, mix-in the [`ContentNegotiation`](app/controllers/ContentNegotiation.sca
 [Play! Content Negotiation](https://www.playframework.com/documentation/2.5.x/ScalaContentNegotiation#Content) features
 to determine the appropriate marshalling and Content Type of the `Result`.
 
-The `negotiateAction` Action takes in a `Function[Request[AnyContent], Future[M]]` that returns the model to marshal, and *3 implicits*:
-* The json4s formatter (this can be replaced with one or more different marshaling libraries, depending on your
-  requirements)
-* The `Codec`, required for the XML result type
-* An execution context for the internal `Action.async`
+The `negotiateAction` Action takes in a `Function[Request[AnyContent], Future[M]]` that returns the model to marshal,
+and an implicit marshalling library formatter for the model being marshaled.  The action currently accepts a json4s
+formatter (`Formats`), but this can be replaced with one or more different marshaling libraries, depending on your
+requirements.
 
 # XML Result
 

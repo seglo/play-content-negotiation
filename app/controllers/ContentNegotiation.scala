@@ -15,8 +15,10 @@ import play.api.http.ContentTypes
   */
 trait ContentNegotiation extends AcceptExtractors with Rendering with Results {
 
+  import ExecutionContext.Implicits.global
+
   def negotiateAction[M](block: Request[AnyContent] => Future[M])
-                        (implicit formats: Formats, codec: Codec, ec: ExecutionContext): Action[AnyContent] = Action.async { implicit request =>
+                        (implicit formats: Formats): Action[AnyContent] = Action.async { implicit request =>
     block(request) map { model =>
       val repr: JValue = serialize(model)
       render {
